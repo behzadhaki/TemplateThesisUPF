@@ -1,0 +1,534 @@
+% This template is mainly taken from Fredrick Font, which I guess to a large extent comes from Joan Serrà. There are some changes to it, mainly taken from Ajay Srinivasamurthy
+
+% What version of the document are you compiling
+%\def\DRAFTMODE{}   % Uncomment if generating the draft version
+\def\PRINTVER{}    % Uncomment if generating the final BOOK (print) version (The differences are in 1) Colors of hyperlinks, 2) Bleeds, 3) Trim marks + Size) 4) BnW figures
+\def\PRINTVERLINK{}    % Uncomment if generating the final BOOK (print) version (The differences are in 1) Colors of hyperlinks, 2) Bleeds, 3) Trim marks + Size)\textbf{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comment/Uncomment to remove edges borders 
+
+% \def\WithoutTrimOnline{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% If both the commands are comments it generates a final PDF version to be distributted electronically.
+
+%% Useful packages
+\RequirePackage{fix-cm} % Technicalities
+% -------------------------------------------------------------------------------------------------------------------------
+%\documentclass[11pt,a4paper,twoside,openright]{memoir}	% Some extra options if needed in the future\textsl{}
+%\documentclass[10pt,b5paper,twoside,showtrims,openright]{memoir} % Some extra options if needed in the future
+%\documentclass[10pt,a4paper,twoside,showtrims,openright]{memoir} % Some extra options if needed in the future
+\documentclass[11pt,a4paper,twoside,openright, showtrims, oldfontcommands]{memoir} 
+
+
+%Fixing imp useful info
+\renewcommand{\title}{TITLE_HERE}
+\renewcommand{\author}{FIRSTNAME LASTNAME}
+\newcommand{\thyear}{2024}
+\newcommand{\departmenta}{Music Technology Group}
+\newcommand{\departmentb}{Engineering Department}
+\newcommand{\supervisor}{Dr. FIRSTNAME LASTNAME}
+
+
+
+\newcommand{\aquote}[2]{\begin{displayquote}\textit{\small{#2: ``#1''}}\end{displayquote}}
+\newcommand{\aquotes}[2]{\begin{displayquote}\textit{\small{``#1''}}\end{displayquote}}
+\newcommand{\aquotetab}[2]{\textit{\scriptsize{#2: ``#1''}}}
+
+
+% -------------------------------------------------------------------------------------------------------------------------
+\usepackage{times}
+\usepackage[T1]{fontenc} 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathptmx}
+\usepackage{bbm}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+%\usepackage{ae,aecompl}
+\usepackage[UKenglish]{isodate}
+
+\usepackage[british,catalan,spanish,es-nosectiondot]{babel}
+\usepackage[hyphens]{url}
+\urlstyle{rm}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{lscape} 
+\usepackage{afterpage}
+\usepackage{color}
+\usepackage[table]{xcolor}% for alternating colors in tabels to improve readability
+\usepackage{nicefrac}
+\usepackage{titlecaps}
+\Addlcwords{for, is, on}
+\usepackage{titlesec}
+\usepackage[round,authoryear]{natbib}
+\usepackage{acronym}
+\usepackage{tabularx}
+\usepackage[backref=page,hyperfigures,breaklinks,colorlinks,bookmarksopenlevel=0,bookmarksdepth=2
+pdfpagemode=UseOutlines,
+pdftitle=Automatic~characterization~and~generation~of~music~loops~and~instrument~samples~for~electronic~music~production
+pdfauthor=Antonio~Ramires,
+pdfsubject=PhD~Thesis,
+pdfkeywords=Generation~Classification~Music~Information~Retrieval~Music~Production
+]{hyperref}
+%\usepackage[style=long,nonumberlist,toc,acronym,nomain]{glossaries}
+\usepackage[section,nopostdot,numberedsection=autolabel,acronym,nonumberlist,nomain,nogroupskip=true]{glossaries}
+\usepackage{glossary-superragged}
+\usepackage{mathtools}
+%\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{arydshln}
+\usepackage{algorithm,algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage[threshold=0]{csquotes}
+\usepackage{listings}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{mathspec}
+\usepackage{siunitx}
+\usepackage{svg}
+\usepackage{bookmark}
+\usepackage{bibentry}
+\usepackage{multirow}
+
+%\let\footruleskip\undefined
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+\renewcommand*{\backrefalt}[4]{[{\footnotesize%
+		\ifcase #1 Not cited.%
+		\or Cited on page~#2.%
+		\else Cited on pages #2.%
+		\fi%
+	}]}
+
+\setlength{\epigraphwidth}{0.586\textwidth}
+\renewcommand{\textflush}{flushleftright}
+
+%\usepackage{natbibspacing}
+%\setlength{\bibspacing}{0.3\baselineskip}
+% per les pagines a la bibliografia
+% -> UN COMMENT A PARTIR D?AQUI
+%\renewcommand*{\backref}[1]{}
+%\renewcommand*{\backrefalt}[4]{%
+%    \ifcase #1 (Not cited.)%
+%    \or        (Cited on page~#2.)%
+%    \else      (Cited on pages~#2.)%
+%    \fi}
+
+% \usepackage{fixltx2e} % Technicalities
+\usepackage{latexsym}
+\usepackage{rotating}
+\usepackage{bm}
+%\usepackage{bibentry}\nobibliography*
+\usepackage{longtable}
+%\usepackage{verbatim}
+%\newsubfloat{figure}
+\usepackage{wrapfig}
+% better tables
+\usepackage[para]{threeparttable}
+\usepackage{booktabs}
+\usepackage{arydshln}
+\usepackage{refcount}
+\usepackage{minted}
+
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{T}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+
+% for footnotes in tables
+\usepackage{footnote}
+\usepackage{multirow}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+\usepackage{courier}
+
+\usepackage{ifthen}
+
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
+\usepackage{lipsum}
+\newcommand{\signat}[1]{%
+	{%
+		\unskip
+		\nobreak
+		\hfil
+		\penalty50%
+		\hskip2em%
+		\hbox{}%
+		\nobreak
+		\hfil
+		#1%
+		\parfillskip=0pt%
+		\finalhyphendemerits=0% 
+		\endgraf
+	}%
+}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning}
+
+
+\maxsecnumdepth{subsubsection}
+\setsecnumdepth{subsubsection}
+%\maxtocdepth{subsubsection}
+%\settocdepth{subsubsection}
+\maxtocdepth{subsection}
+\settocdepth{subsection}
+
+\definecolor{NoColor}{rgb}{0,0,0}
+%%%%%%%%\definecolor{LinkColor}{rgb}{0,0,0.25}
+%%%%%%%%\definecolor{ExtLinkColor}{rgb}{0,0.3,0}
+\definecolor{tabgray}{gray}{0.8}
+\definecolor{CiteColor}{rgb}{0, 0, 0.3} 
+\definecolor{LinkColor}{rgb}{0, 0, 0.3} 
+% \definecolor{LinkColor}{rgb}{0, 1, 0} 
+% \definecolor{ExtLinkColor}{rgb}{0, 0.4, 0}
+\definecolor{ExtLinkColor}{rgb}{0, 0, 0.6}
+
+\ifdefined\PRINTVERLINK
+\hypersetup{citecolor=black,linkcolor=black,urlcolor=black}
+\else
+\hypersetup{citecolor=CiteColor,linkcolor=LinkColor,urlcolor=ExtLinkColor}
+\fi
+
+%% Format UPF, dues cares. Recordeu que les dimensions d'A4 i B5 son (210mm,297mm) i (176mm,250mm), respectivament.
+\setstocksize{297mm}{210mm} % El suport original es A4
+\settrimmedsize{250mm}{176mm}{*} % El suport final, despres de tallar, B5.
+\setlength{\trimtop}{23mm} % Alcada de la franja superior a tallar.
+\setlength{\trimtop}{24mm} % Alcada de la franja inferior a tallar.
+\setlength{\trimedge}{17mm} % Amplada de la franja interior a tallar per cada costat.
+%\setulmarginsandblock{*}{29mm}{1.1} % Marges verticals (3cm a dalt, 0.9*3cm a baix)
+%\setlrmarginsandblock{30mm}{*}{0.75} % Marges laterals (3cm a la dreta, 0.75*3cm l'esquerra)
+\setulmarginsandblock{23mm}{23mm}{*} % used to be {25mm}{16mm}
+\setlrmarginsandblock{25mm}{*}{0.8}
+\checkandfixthelayout
+\trimLmarks % Marques de tall en forma de 'L'
+
+
+
+
+\ifdefined\WithoutTrimOnline
+\setstocksize{250mm}{176mm}  % The size of the stock paper (support), A4
+\settrimmedsize{\stockheight}{\stockwidth}{*} % B5, the size of the final copy, cut from the stock paper.
+\setlength{\trimtop}{0mm} % Alcada de la franja inferior a tallar.
+\setlength{\trimedge}{0mm} % Amplada de la franja interior a tallar per cada costat.
+\setulmarginsandblock{23mm}{23mm}{*} % used to be {25mm}{16mm}
+\setlrmarginsandblock{25mm}{*}{0.8}
+\showtrimsoff
+\checkandfixthelayout
+\fi
+
+%%%%%%%%% TAKEN FROM AJAY SEE IF THIS SIZE LOOKS BETTER OTHERWISE STICK TO WHAT IT IS 
+%\ifdefined\PRINTVER
+%\setstocksize{297mm}{210mm}  % The size of the stock paper (support), A4
+%\settrimmedsize{250mm}{176mm}{*} % B5, the size of the final copy, cut from the stock paper.
+%\setlength{\trimtop}{23mm}   % Top margin: top_stock - top_page
+%\setlength{\trimedge}{17mm}  % Outer later margin: lat_stock - lat_page
+%\setlrmarginsandblock{34mm}{30mm}{*} % 
+%\setulmarginsandblock{27mm}{25mm}{*} % 
+%\trimLmarks % Ls, not crosses (which may leave traces on the final copy) as trimmarks.
+%\checkandfixthelayout
+%\else
+%\setstocksize{250mm}{176mm}  % The size of the stock paper (support), A4
+%\settrimmedsize{\stockheight}{\stockwidth}{*} % B5, the size of the final copy, cut from the stock paper.
+%\setlength{\trimtop}{0mm}   % Top margin: top_stock - top_page
+%\setlength{\trimedge}{0mm}  % Outer later margin: lat_stock - lat_page
+%\setlrmarginsandblock{32mm}{32mm}{*} % 
+%\setulmarginsandblock{27mm}{25mm}{1.0} % 
+%\showtrimsoff
+%\checkandfixthelayout
+%\fi
+
+
+
+%% UNCOMMENT THIS FOR ONLINE VERSION %%%%
+%\setstocksize{250mm}{176mm}  % The size of the stock paper (support), A4
+%\settrimmedsize{\stockheight}{\stockwidth}{*} % B5, the size of the final copy, cut from the stock paper.
+%\setlength{\trimtop}{0mm}   % Top margin: top_stock - top_page
+%\setlength{\trimedge}{0mm}  % Outer later margin: lat_stock - lat_page
+%\showtrimsoff
+%\checkandfixthelayout
+
+
+
+% arreglar que floats al final de capitol no es centrin verticalment
+%\makeatletter% Set distance from top of page to first float
+%\setlength{\@fptop}{5pt}
+%\makeatother
+
+% perque no es posi espai blanc raro entre coses
+%\raggedbottom
+\flushbottom
+
+% espai despres de floats
+\setlength{\textfloatsep}{0.5cm}
+
+\input{src/mychapterstyles}
+\chapterstyle{myveelo}
+\pagestyle{mainmatter}
+
+% ---- Some configs...
+
+
+
+%\renewcommand{\rmdefault}{put}
+%\renewcommand{\sfdefault}{phv}
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\quotat}[2]{
+  \begin{flushright}
+    \textit{``#1'',\\
+    \vspace*{0.3cm}
+    #2.\\
+    \vspace*{0.3cm}
+    }
+  \end{flushright}
+}
+
+
+\renewcommand{\mkcitation}[1]{ (#1)}
+%\renewcommand{\mktextquote}[6]{#1#2#3#6#4#5}
+%\renewcommand{\mktextquote}[6]{#1#2#4#3\hfill\hbox{#6}#5}
+\renewcommand{\mktextquote}[6]{#1#2#4#3\signat{#6}#5}
+\renewcommand{\mkblockquote}[5]{#1#2#3\signat{#4}#5}
+
+
+% Space between paragraphs and lines
+\setlength{\parskip}{1.5mm} % space between paragraphs
+%\setlength{\parskip}{1mm plus1mm minus1mm}
+
+%\linespread{1.35}
+\linespread{1}
+
+% Bullet points index esquema
+%\newcommand{\point}{\vspace{0.25cm}$\bullet$\hspace{0.25cm}}
+\newcounter{points}
+\definecolor{orange}{rgb}{1,0.5,0}
+\newcommand*\point{%
+  \stepcounter{points}%
+  \vspace{0.25cm}
+  \textcolor{orange}{$\bullet^{\thepoints}$}
+  }
+
+
+% per definir mides de figures
+\newcommand{\figSizeHundred}{1.0\columnwidth}
+\newcommand{\figSizeNinety}{0.9\columnwidth}
+\newcommand{\figSizeNinetyFive}{0.95\columnwidth}
+\newcommand{\figSizeEightyFive}{0.8\columnwidth}
+\newcommand{\figSizeEighty}{0.8\columnwidth}
+\newcommand{\figSizeSeventy}{0.7\columnwidth}
+\newcommand{\figSizeSeventyFive}{0.75\columnwidth}
+\newcommand{\figSizeSixtyFive}{0.65\columnwidth}
+\newcommand{\figSizeSixty}{0.6\columnwidth}
+\newcommand{\figSizeFifty}{0.5\columnwidth}
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+
+% ************ Lines for draft mode ************
+% \usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm,bindingoffset=0.8cm,includeheadfoot,paper=a4paper]{geometry}
+% \linespread{1.6}
+% **********************************************
+
+
+\hyphenation{Universitat Pompeu Fabra}
+
+
+%------------------------------------------------------------------------------------------------
+% -----------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------
+
+
+\newglossarystyle{mylong}{%
+	\setglossarystyle{long}%
+	\renewenvironment{theglossary}%
+	{\begin{longtable}[l]{@{}p{\dimexpr 2.5cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
+		{\end{longtable}}%
+}
+
+\input{src/glossary.tex}
+\makeglossaries	
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\begin{document}
+
+% ----------------------------------------------
+\parindent0ex
+\selectlanguage{british}
+
+%TABLE OF CONTENTS: REQUIRED
+%\tableofcontents
+
+%lIST OF FIGURES; ONLY IF THERE ARE FIGURES
+%\listoffigures
+%TO APPER THE LIST OF FIGURES IN THE TABLE OF CONTENTS 
+%\addcontentsline{toc}{chapter}{List of figures}
+
+%LIST OF TABLES; ONLY IF THERE ARE TABLES
+%\listoftables
+%TO APPEAR THE LIST OF TABLES IN THE TABLE OF CONTENTS
+%\addcontentsline{toc}{chapter}{List of tables}
+
+\frontmatter
+
+%%%% TITLE %%%%%
+% ------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\begin{titlingpage}
+\begin{flushright}
+  \begin{flushleft}%
+    %{\Huge \sffamily Music Recommender Systems: \par}%
+    %\vspace*{2cm}
+    {\LARGE \sffamily TITLEHERE \par}%
+    \vskip 2cm%
+    {\large
+     \lineskip .75em%
+      \begin{tabular}[t]{c}%
+       {\Huge  {Firstname Lastname}}
+      \end{tabular}\par}%
+      \rule{\linewidth}{1mm} \par
+      %\vskip 1cm%
+    {\large TESI DOCTORAL UPF / ANY 2024}\\[2cm]
+    {\normalsize THESIS SUPERVISOR}\par
+    {\large Dr.~Firstname Lastname}\par
+    {\large Music Technology Group}\par
+    {\large Dept. of Engineering} \par
+    {\large Universitat Pompeu Fabra} \par
+
+    \vspace{7cm}
+   \centering  
+    \includegraphics[scale=0.08]{logo_upf_color.png}
+   \end{flushleft}\par
+   
+   \end{flushright}
+\end{titlingpage}
+\selectlanguage{british}
+
+% ------------------------------------------------------------
+
+
+%%%% PRELIM %%%%%
+\include{src/preliminarystuff}
+
+
+%%%% TOC %%%%%
+\cleartorecto\tableofcontents
+%\cleartorecto\include{ch00/mathSymbols}
+\renewcommand*\listfigurename{List of Figures}
+\cleartorecto\listoffigures
+\renewcommand*\listtablename{List of Tables}
+\cleartorecto\listoftables 
+
+\titleclass{\part}{top}
+% ----------------------------------------------
+
+% Customize the \part command
+% \titleformat{\part}
+%   [display] % Display style (Part on a separate line)
+%   {\Huge\bfseries\centering} % Formatting: Huge, bold, centered
+%   {\makebox[1em][c]{Part \thepart}}  % Fixed width box for "Part X" (4em width)
+%   {2pt}           % Space between "Part I" and the title
+%   {\Huge\bfseries\centering} % Formatting of the title: Huge, bold, centered
+%   [\vspace{2pt}]  % Space after the title
+
+% % Adjust the spacing around the part title
+% \titlespacing*{\part}{0pt}{0pt}{55pt} % {left}{before}{after}
+
+
+% ----------------------------------------------
+
+\mainmatter
+\bookmarksetup{startatroot}
+
+% INCLUDE CHAPTERS HERE
+
+\part{THIS IS A PART}
+\include{src/MainChapters/chapter1/main}
+
+
+% ----------------------------------------------
+
+
+\appendix
+
+\chapter{Appendix}
+
+\renewcommand\chaptername{Appendix}
+ \renewcommand*{\printchaptername}{\flushright \chapnamefont Appendix\ \ \ \ \ \ \ \ }
+
+\cleartorecto\include{src/appendices/app_End1_Pubs}
+
+
+
+
+
+% To include glossary chapter uncomment following 5 lines
+% \chapter{Glossary}
+% \label{app:glossary}
+% \renewcommand{\arraystretch}{1}	
+% \renewcommand{\glsnamefont}[1]{\textbf{#1}}
+% \printglossary[type = \acronymtype, style = mylong]
+
+
+
+
+%\printglossary[type=MU, style = mylong] 
+
+%\cleartorecto\include{ch99/quotation}
+% \cleartorecto\newpage\thispagestyle{empty}\mbox{}
+
+
+
+\renewcommand{\glossarysection}[2][]{} % Remove "Glossary" heading
+
+\chapter{Acronyms}  % Customize the heading of the appendix section
+\printglossary[type=\acronymtype, title={Acronyms}]  % This prints the acronym list with the title "Acronyms"
+
+
+
+%\cleartorecto\include{ch99/finalpage}
+\bibliographystyle{apa_jserra2}
+%\bibliography{refs}
+
+
+
+\backmatter
+\printindex
+\cleartorecto\bibliography{references/refs}
+
+%\cleartorecto\small\bibliography{ch99/jserra}\normalsize
+%\cleartorecto\footnotesize\bibliography{ch99/jserra}\normalsize
+
+%
+%\let\svaddcontentsline\addcontentsline
+%\renewcommand\addcontentsline[3]{%
+%  \ifthenelse{\equal{#1}{lof}}{}%
+%  {\ifthenelse{\equal{#1}{lot}}{}{\svaddcontentsline{#1}{#2}{#3}}}}
+
+
+
+% \nocite{*}
+
+\ifdefined\PRINTVERLINK 
+\cleartorecto
+\newpage\null\thispagestyle{empty}\newpage
+\newpage\null\thispagestyle{empty}\newpage
+\newpage\null\thispagestyle{empty}\newpage
+\fi
+
+\end{document}
